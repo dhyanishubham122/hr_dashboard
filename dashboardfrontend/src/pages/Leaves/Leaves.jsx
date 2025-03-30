@@ -11,8 +11,8 @@ const Leaves = () => {
         <div className="filter-group">
           <select className="status-dropdown">
             <option>Status</option>
-            <option>Active</option>
-            <option>Inactive</option>
+            <option>Approved</option>
+            <option>Rejected</option>
           </select>
         </div>
         <div className="search-add-group">
@@ -39,11 +39,11 @@ const Leaves = () => {
             <tbody>
               <tr>
                 <td>
-                  <img src="profile.jpg" alt="Profile" className="profile-pic" />
+                  <img src="https://res.cloudinary.com/dfksbh3kv/image/upload/v1743346790/1743346788629-profile.jpg" alt="Profile" className="profile-pic" />
                 </td>
-                <td>John Doe</td>
-                <td>08/09/24</td>
-                <td>Visiting House</td>
+                <td>Shubham</td>
+                <td>30/03/25</td>
+                <td>Fever</td>
                 <td>
                   <span className="status approved">Approved</span>
                 </td>
@@ -61,8 +61,8 @@ const Leaves = () => {
           <Calendar />
           <h4>Approved Leaves</h4>
           <div className="approved-leaves">
-            <img src="profile.jpg" alt="Profile" className="profile-pic" />
-            <p>John Doe - 08/09/24</p>
+            <img src="https://res.cloudinary.com/dfksbh3kv/image/upload/v1743346790/1743346788629-profile.jpg" alt="Profile" className="profile-pic" />
+            <p>Shubham - 30/03/25</p>
           </div>
         </div>
       </div>

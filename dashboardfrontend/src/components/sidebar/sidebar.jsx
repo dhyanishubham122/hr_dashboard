@@ -11,7 +11,7 @@ const Sidebar = () => {
   const [showLogoutModal, setShowLogoutModal] = useState(false);
   const handleLogout = () => {
     // Your logout logic here
-    console.log("User logged out");
+      navigate('/login')
     setShowLogoutModal(false);
   };
   return (

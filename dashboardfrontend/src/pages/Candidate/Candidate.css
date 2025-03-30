@@ -160,3 +160,47 @@ tr:hover {
   .dropdown-menu .action-btn:hover {
     background: #f5f5f5;
   }
+/* Base dropdown styling (unchanged) */
+.status-dropdowns {
+    padding: 6px 12px;
+    border-radius: 50px;
+    font-weight: bold;
+    text-align: center;
+    cursor: pointer;
+    border: 2px solid #ccc;
+    background-color: white;
+    appearance: none; /* Removes default arrow */
+}
+
+/* Text color for each status */
+.status-dropdowns option[value="New"] {
+    color: black;
+}
+
+.status-dropdowns option[value="Scheduled"] {
+    color: #e6b800; /* Yellow */
+}
+
+.status-dropdowns option[value="Ongoing"] {
+    color: #28a745; /* Green */
+}
+
+.status-dropdowns option[value="Selected"] {
+    color: #6f42c1; /* Purple */
+}
+
+.status-dropdowns option[value="Rejected"] {
+    color: #dc3545; /* Red */
+}
+
+/* Dropdown options styling */
+.status-dropdowns option {
+    padding: 8px;
+    border-radius: 8px; /* Rounded edges */
+    background-color: white;
+}
+
+/* Add grey border when hovering over dropdown options */
+.status-dropdowns option:hover {
+    border: 1px solid grey;
+}

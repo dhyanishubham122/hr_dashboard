@@ -12,9 +12,9 @@ const candidate_to_employee=async(req,res)=>{
         if(!candidate){
             return res.status(404).json({message:'Candidate not found'});
             }
-            if (candidate.status === "Selected" || status!=="Selected") {
-                return res.status(400).json({ message: "Only selected candidates can be moved to employees" });
-            }
+            // if (candidate.status !== "Selected" || status!=="Selected") {
+            //     return res.status(400).json({ message: "Only selected candidates can be moved to employees", canditae:candidate.status });
+            // }
             const existingEmployee = await Employee.findOne({ email: candidate.email });
             if (existingEmployee) {
                 return res.status(400).json({ message: "Employee already exists" });
@@ -82,14 +82,21 @@ const employeefilter=async(req,res)=>{
         return res.status(500).json({message:"Internal server error",error:error.message});
     }
 }
-const updateemployess=async(req,res)=>{
+const updateemployess = async (req, res) => {
     try {
         const { id } = req.params;  
-        const {name,email,phone,department,position,Joining_Date}=req.body;
+   console.log("employee is sis :",id);
+        if (!mongoose.Types.ObjectId.isValid(id)) {
+            return res.status(400).json({ error: "Invalid employee ID" , id:id});
+        }
+
+        const { name, email, phone, department, position, Joining_Date } = req.body;
+
         let employee = await Employee.findById(id);
         if (!employee) {
             return res.status(404).json({ message: "Employee not found" });
         }
+
         let image = employee.profile;
         if (req.file) {
             image = req.file.path ? await uploadoncloudinary(req.file.path) : "";  
@@ -97,6 +104,7 @@ const updateemployess=async(req,res)=>{
                 return res.status(400).json({ message: "Error uploading profile image" });
             }
         }
+
         const updatedEmployee = await Employee.findByIdAndUpdate(
             id,
             {
@@ -114,8 +122,8 @@ const updateemployess=async(req,res)=>{
         return res.status(200).json({ message: "Employee updated successfully", updatedEmployee });
 
     } catch (error) {
-        console.log(`Internal error in updating the employess : ${error.message}`);
-        return res.status(500).json({message:"Internal server error",error:error.message});
+        console.error(`Internal error in updating the employees: ${error.message}`);
+        return res.status(500).json({ message: "Internal server error", error: error.message });
     }
-}
+};
 module.exports={candidate_to_employee,deleteEmployee,allemployees,updateemployess,employeefilter};

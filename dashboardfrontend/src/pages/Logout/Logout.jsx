@@ -2,6 +2,8 @@ import React from 'react';
 import './Logout.css';
 
 const Logout = ({ onCancel, onLogout }) => {
+
+  
   return (
     <div className="logout-modal">
     <div className="logout-content">
