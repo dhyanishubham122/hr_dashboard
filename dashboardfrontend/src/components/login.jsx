@@ -1,0 +1,79 @@
+import React from 'react';
+import { Link } from 'react-router-dom';
+import { PiEyeBold } from "react-icons/pi";
+import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+
+function Login() {
+  const [email,setEmail]=useState('');
+  const [password,setPassword]=useState('');
+  const navigate=useNavigate();
+ 
+  const handleSubmit = async(e) => {
+    e.preventDefault();
+    const response= await fetch('http://localhost:4000/user/login',{
+      method:'POST',
+      headers:{
+        'Content-Type': 'application/json',
+        },
+        body:JSON.stringify({email,password})
+    });
+    if(!response.ok){
+      throw new Error('faied to login');
+    }
+    const data=await response.json();
+    console.log(data);
+    setEmail('');
+    setPassword('');
+    navigate('/candidates');
+  }
+  return (
+    <div className="main-container">
+      <div className="logo">LOGO</div>
+      <div className="box">
+        {/* Left Section */}
+        <div className="left-section">
+          <div className="dashboard-image">
+            <div className="image-placeholder">Dashboard Preview</div>
+          </div>
+          <div className="text-content">
+            <h2>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</h2>
+            <p>
+              Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+              veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+            </p>
+          </div>
+          <div className="dots">
+            <span className="dot active"></span>
+            <span className="dot"></span>
+            <span className="dot"></span>
+          </div>
+        </div>
+
+        {/* Right Section */}
+        <div className="right-section">
+          <h2>Welcome to Dashboard</h2>
+          <form onSubmit={handleSubmit}>
+            <div className="form-group-signup">
+              <label htmlFor="email">EMAIL ADDRESS*</label>
+              <input type="email" id="email" placeholder="Email Address" value={email} onChange={(e)=>setEmail(e.target.value)} required />
+            </div>
+            <div className="form-group-signup">
+              <label htmlFor="password">PASSWORD*</label>
+              <div className="password-input">
+                <input type="password" id="password" placeholder="Password" value={password} onChange={(e)=>setPassword(e.target.value)} required />
+                <span className="eye-icon"><PiEyeBold /></span>
+              </div>
+            </div>
+            <button type="submit" className="register-btn">LOGIN</button>
+          </form>
+          <p className="toggle-link">
+            Don't have an account? <Link to="/signup">Register</Link>
+          </p>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export default Login;

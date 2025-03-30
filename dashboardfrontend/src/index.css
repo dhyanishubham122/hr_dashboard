@@ -1,0 +1,200 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Arial', sans-serif;
+}
+
+body {
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+  background-color: #ffffff; 
+}
+
+.main-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  padding: 5px;
+}
+
+.logo {
+  font-size: 24px;
+  font-weight: bold;
+  color: #4b0082;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+}
+
+.logo::before {
+  content: '■';
+  margin-right: 8px;
+  color: #4b0082;
+}
+
+.box {
+  display: flex;
+  width: 100%;
+  max-width: 1000px;
+  height: 80%;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Left Section */
+.left-section {
+  flex: 1;
+  background-color: #4b0082; 
+  color: white;
+  padding: 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.dashboard-image {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.image-placeholder {
+  width: 80%;
+  height: 60%;
+  background-color: #ccc;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+  color: #666;
+  font-size: 16px;
+}
+
+.text-content {
+  margin-bottom: 20px;
+}
+
+.text-content h3 {
+  font-size: 20px;
+  margin-bottom: 10px;
+  text-transform: uppercase;
+}
+
+.text-content p {
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.dots {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  background-color: #fff;
+  border-radius: 50%;
+  opacity: 0.5;
+}
+
+.dot.active {
+  opacity: 1;
+}
+
+/* Right Section */
+.right-section {
+  flex: 1;
+  background-color: #ffffff; 
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 80px;
+}
+
+.right-section h2 {
+  font-size: 20px;
+  margin-bottom: 30px;
+  color: #4b0082; 
+}
+
+.form-group-signup {
+  margin-bottom: 20px;
+}
+
+.form-group-signup label {
+  display: block;
+  font-size: 12px;
+  color: black; 
+  margin-bottom: 5px;
+  text-transform: uppercase;
+}
+
+.form-group-signup input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid rgb(226, 223, 223); 
+  border-radius: 5px;
+  font-size: 14px;
+  color: black;
+  background-color: #ffffff; 
+}
+
+.form-group-signup input::placeholder {
+  color: grey; 
+}
+
+.password-input {
+  position: relative;
+}
+
+.eye-icon {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  font-size: 16px;
+  color: black; 
+}
+
+.register-btn {
+  width: 50%;
+  padding: 12px;
+  background-color: #4b0082; 
+  color: white;
+  border: none;
+  border-radius: 50px;
+  font-size: 16px;
+  cursor: pointer;
+  text-transform: uppercase;
+  margin-top: 10px;
+}
+
+.register-btn:hover {
+  background-color: #4b0082; 
+}
+
+.toggle-link {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 14px;
+  color: grey; 
+}
+
+.toggle-link a {
+  color: #4b0082; 
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.toggle-link a:hover {
+  text-decoration: underline;
+} 
