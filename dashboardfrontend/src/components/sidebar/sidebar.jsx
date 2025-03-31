@@ -9,6 +9,8 @@ import Logout from '../../pages/Logout/Logout.jsx'
 const Sidebar = () => {
   const navigate = useNavigate();
   const [showLogoutModal, setShowLogoutModal] = useState(false);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false); // State for toggling sidebar
+
   const handleLogout = () => {
     // Your logout logic here
       navigate('/login')

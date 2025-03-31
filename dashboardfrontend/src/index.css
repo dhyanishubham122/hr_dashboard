@@ -1,4 +1,5 @@
-* {
+/* Base Styles */
+* { 
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -197,4 +198,50 @@ body {
 
 .toggle-link a:hover {
   text-decoration: underline;
-} 
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .box {
+    flex-direction: column;
+    height: auto;
+  }
+  .left-section, .right-section {
+    padding: 40px;
+  }
+}
+
+@media (max-width: 768px) {
+  .box {
+    width: 90%;
+    max-width: 600px;
+  }
+  .left-section, .right-section {
+    padding: 30px;
+  }
+  .right-section {
+    text-align: center;
+  }
+  .register-btn {
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .main-container {
+    padding: 10px;
+  }
+  .box {
+    width: 100%;
+    height: auto;
+  }
+  .left-section, .right-section {
+    padding: 20px;
+  }
+  .right-section h2 {
+    font-size: 18px;
+  }
+  .form-group-signup input {
+    font-size: 12px;
+  }
+}

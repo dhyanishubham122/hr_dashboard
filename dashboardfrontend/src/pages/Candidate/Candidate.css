@@ -9,6 +9,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    flex-wrap: wrap;
     margin-bottom: 20px;
 }
 
@@ -17,18 +18,21 @@
     display: flex;
     justify-content: space-between;
     width: 100%;
+    flex-wrap: wrap;
 }
 
 /* Left side: Status & Position */
 .filter-group {
     display: flex;
     gap: 12px;
+    flex-wrap: wrap;
 }
 
 /* Right side: Search & Add Candidate */
 .search-add-group {
     display: flex;
     gap: 12px;
+    flex-wrap: wrap;
 }
 
 /* Dropdowns */
@@ -67,15 +71,14 @@
 
 /* Candidates Table */
 .candidates-table {
-    overflow-x: hidden;
+    overflow-x: auto; /* Enables scrolling on smaller screens */
     border-radius: 20px;
     border: grey;
-}
-candidates-table, table {
-    border-radius: 0;
+    width: 100%;
+    max-width: 100%;
 }
 
-table {
+.candidates-table table {
     width: 100%;
     border-collapse: collapse;
 }
@@ -84,13 +87,13 @@ th, td {
     padding: 12px;
     text-align: left;
     border-bottom: 1px solid #eee;
- 
 }
 
 th {
     background-color: #4b0082 !important;
     color: white !important;
 }
+
 tr:hover {
     background-color: #fafafa;
 }
@@ -114,21 +117,23 @@ tr:hover {
 .action-btn:hover {
     opacity: 0.9;
 }
+
+/* Dropdown Menu */
 .action-cell {
     position: relative;
     text-align: center;
-  }
-  
-  .menu-btn {
+}
+
+.menu-btn {
     background: none;
     border: none;
     cursor: pointer;
     font-size: 18px;
     color: #4b0082;
     padding: 5px;
-  }
-  
-  .dropdown-menu {
+}
+
+.dropdown-menu {
     position: absolute;
     right: 10px;
     top: 30px;
@@ -140,9 +145,9 @@ tr:hover {
     flex-direction: column;
     z-index: 10;
     min-width: 120px;
-  }
-  
-  .dropdown-menu .action-btn {
+}
+
+.dropdown-menu .action-btn {
     background: none;
     border: none;
     width: 100%;
@@ -151,16 +156,17 @@ tr:hover {
     cursor: pointer;
     font-size: 14px;
     color: #333;
-  }
-  
-  .dropdown-menu .delete {
+}
+
+.dropdown-menu .delete {
     color: #d32f2f; /* Red color for delete */
-  }
-  
-  .dropdown-menu .action-btn:hover {
+}
+
+.dropdown-menu .action-btn:hover {
     background: #f5f5f5;
-  }
-/* Base dropdown styling (unchanged) */
+}
+
+/* Status Dropdowns */
 .status-dropdowns {
     padding: 6px 12px;
     border-radius: 50px;
@@ -203,4 +209,98 @@ tr:hover {
 /* Add grey border when hovering over dropdown options */
 .status-dropdowns option:hover {
     border: 1px solid grey;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 1024px) {
+    .candidates {
+        padding: 20px;
+    }
+
+    .controls {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+
+    .search-add-group {
+        justify-content: flex-start;
+    }
+
+    .search {
+        min-width: 180px;
+    }
+
+    .status-dropdown,
+    .position-dropdown {
+        min-width: 120px;
+    }
+}
+
+@media (max-width: 768px) {
+    .candidates {
+        padding: 15px;
+    }
+
+    .candidates-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+
+    .controls {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .filter-group,
+    .search-add-group {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .search,
+    .add-candidate-btn {
+        width: 100%;
+    }
+
+    .candidates-table {
+        overflow-x: auto;
+    }
+}
+
+@media (max-width: 480px) {
+    .candidates {
+        padding: 10px;
+    }
+
+    .search {
+        min-width: 100%;
+    }
+
+    .status-dropdown,
+    .position-dropdown {
+        min-width: 100%;
+    }
+
+    .add-candidate-btn {
+        width: 100%;
+        text-align: center;
+    }
+
+    th, td {
+        padding: 10px;
+        font-size: 14px;
+    }
+
+    .action-btn {
+        padding: 5px 10px;
+        font-size: 12px;
+    }
+
+    .dropdown-menu {
+        right: 5px;
+        top: 25px;
+        min-width: 100px;
+    }
 }

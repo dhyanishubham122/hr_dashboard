@@ -211,13 +211,21 @@ const Candidates = () => {
                     <div className="filter-group">
                         <select name="status" className="status-dropdown" onChange={handleFilterChange}>
                             <option value="">Status</option>
-                            <option value="Active">Active</option>
-                            <option value="Inactive">Inactive</option>
+                            <option value="New">New</option>
+                            <option value="Scheduled">Scheduled</option>
+                            <option value="Selected">Selected</option>
+                            <option value="Rejected">Rejected</option>
+                            <option value="Ongoing">Ongoing</option>
+
+
                         </select>
                         <select name="position" className="position-dropdown" onChange={handleFilterChange}>
                             <option value="">Position</option>
+                            <option value="Designer Internr">Designer Intern</option>
                             <option value="Developer">Developer</option>
-                            <option value="Designer">Designer</option>
+                            <option value="Senior Developer">Senior Developer</option>
+                            <option value="Human Resource Intern">Human Resource Intern</option>
+
                         </select>
                     </div>
                     <div className="search-add-group">

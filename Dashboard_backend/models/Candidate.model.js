@@ -20,7 +20,7 @@ const CandidateSchema= new mongoose.Schema({
     },
     position:{
         type:String,
-        enum:["Designer Intern", "Senior Developer", "Human Resource Intern"],
+        enum:["Designer Intern", "Developer", "Senior Developer", "Human Resource Intern"],
         required:true,
     },
     experience:{

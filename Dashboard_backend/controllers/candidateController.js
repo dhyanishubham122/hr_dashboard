@@ -31,7 +31,7 @@ const addCandidate=async(req,res)=>{
          await newCandidate.save();
          res.status(201).json({message:"Candidate Added Successfully"});
    } catch (error) {
-       console.log(`Internal server in adding new candidate`);
+       console.log(`Internal server in adding new candidate${error}`);
        return res.status(500).json({message:"Internal server error",error:error.message});
    }
 }

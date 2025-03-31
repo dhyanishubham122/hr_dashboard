@@ -1,3 +1,4 @@
+/* Base Sidebar Styles */
 .sidebar {
   width: 250px;
   background-color: white;
@@ -84,4 +85,41 @@
   margin-top: auto;
   border-top: 1px solid #e0e0e0;
   padding-top: 20px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .sidebar {
+    width: 200px;
+  }
+  .menu-item {
+    padding: 10px 15px;
+  }
+  .search-container {
+    padding: 0 15px;
+  }
+  .search-icon {
+    left: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .sidebar {
+    width: 200px;
+    height: 100vh;
+    position: fixed;
+    left: 0;
+    top: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    padding: 10px;
+    border-right: 1px solid #e0e0e0;
+    box-shadow: 2px 0 5px rgba(0,0,0,0.05);
+  }
+  .menu-item {
+    padding: 10px;
+    font-size: 14px;
+  }
 }

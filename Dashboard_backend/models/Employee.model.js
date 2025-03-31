@@ -20,7 +20,7 @@ const EmployeeSchema= new mongoose.Schema({
     },
     position:{
         type:String,
-        enum:["Intern", "Full Time", "Junior","Senior","Team Lead","Senior Developer"],
+        enum:["Intern", "Full Time","Developer", "Junior","Senior","Team Lead","Senior Developer"],
         required:true,
     },
     department:{
