@@ -224,7 +224,7 @@ const Employees = () => {
                     <td>{employee.phone}</td>
                     <td>{employee.position}</td>
                     <td>{employee.department || 'N/A'}</td>
-                    <td>{employee.dateOfJoining || 'N/A'}</td>
+                    <td>{new Date(employee.Joining_Date).toISOString().split("T")[0]|| 'N/A'}</td>
                     <td className="action-cell">
                       <button className="menu-btn" onClick={() => setMenuOpen(menuOpen === index ? null : index)}>
                         <FiMoreVertical />

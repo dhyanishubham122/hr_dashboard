@@ -40,8 +40,8 @@ const Attendance = () => {
                     <div className="filter-group">
                         <select className="status-dropdown">
                             <option>Status</option>
-                            <option>Active</option>
-                            <option>Inactive</option>
+                            <option>Present</option>
+                            <option>Absent</option>
                         </select>
                     </div>
                     <div className="search-add-group">
@@ -76,10 +76,13 @@ const Attendance = () => {
                                     <td>
                                         <select
                                             className="status-dropdown"
-                                            style={{ color: employee.status === "Present" ? "green" : "red" }}
-                                            value={employee.status || "Status"}
-                                            onChange={(e) => handleStatusChange(employee._id, e.target.value)}
+                                            style={{ color:  "green" }}
+                                            value={employee.status || "Present"}
+                                            onChange={(e) => {
+                                                e.target.style.color = e.target.value === "Absent" ? "red" : "green"; 
+                                                handleStatusChange(employee._id, e.target.value)}}
                                         >
+                                            {/* <option>{employee.status}</option> */}
                                             <option value="Status">Status</option>
                                             <option value="Present" style={{ color: "green" }}>Present</option>
                                             <option value="Absent" style={{ color: "red" }}>Absent</option>

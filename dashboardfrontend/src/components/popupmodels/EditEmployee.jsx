@@ -1,6 +1,6 @@
     // EditEmployee.jsx
     import React, { useState, useEffect } from 'react';
-    import './AddCandidate.css';
+    import './model.css';
     import { FaCalendarAlt } from "react-icons/fa";
 
     const EditEmployee = ({ employeeId, onClose }) => {
@@ -90,11 +90,12 @@
                 </div>
 
                 <div className="form-group">
-                <label>Department<span className="required">*</span></label>
                 <select value={department} onChange={(e) => setDepartment(e.target.value)} required>
                     <option value="" disabled>Select Department</option>
                     {["Designer", "Backend Development", "Frontend Development", "Marketing", "Sales", "IT", "Not Assigned"].map(dept => <option key={dept} value={dept}>{dept}</option>)}
                 </select>
+                <label>Department<span className="required">*</span></label>
+
                 </div>
 
                 <div className="form-group">
@@ -103,25 +104,28 @@
                 </div>
 
                 <div className="form-group">
-                <label>Position<span className="required">*</span></label>
                 <select value={position} onChange={(e) => setPosition(e.target.value)} required>
                     <option value="" disabled>Select Position</option>
                     {["Manager", "Team Lead", "Senior Developer", "Junior Developer", "Intern"].map(pos => <option key={pos} value={pos}>{pos}</option>)}
                 </select>
+                <label>Position<span className="required">*</span></label>
+
                 </div>
 
-                <div className="form-group">
-                <label>Joining Date <span className="required">*</span></label>
-                <div className="date-input-wrapper">
+                <div className="form-group cal">
                     <input type="date" className="date-input" value={joining_Date} onChange={(e) => setJoining_Date(e.target.value)} required />
-                    <FaCalendarAlt className="calendar-icon" />
-                </div>
+                    <label>Joining Date <span className="required">*</span></label>
                 </div>
 
-                <div className="form-group">
-                <label>Profile Picture</label>
+                {/* <div className="form-group file-upload">
+                <label></label>
                 <input type="file" accept="image/*" onChange={(e) => setProfile(e.target.files[0])} />
-                </div>
+                </div> */}
+                  <div className="form-group file-upload">
+              <input type="file" id="Profile Picture"  accept="image/*" className="file-input" onChange={(e) => setProfile(e.target.files[0])} required />
+              <label htmlFor="Profile Picture">Profile Picture<span className="required">*</span></label>
+
+            </div>
             </div>
 
             <div className="popup-footer">
@@ -134,3 +138,6 @@
     };
 
     export default EditEmployee;
+
+
+    

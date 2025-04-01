@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './AddCandidate.css';
+import './model.css';
 
 const AddCandidate = ({ onClose }) => {
   const [name, setName] = useState("");
@@ -90,10 +90,18 @@ const AddCandidate = ({ onClose }) => {
               <label>Email Address<span className="required">*</span></label>
             </div>
 
-            <div className="form-group">
+            {/* <div className="form-group">
               <input type="text" value={position} onChange={(e) => setPosition(e.target.value)} required />
               <label>Position<span className="required">*</span></label>
-            </div>
+            </div> */}
+              <div className="form-group">
+                <select value={position} onChange={(e) => setPosition(e.target.value)} required>
+                    <option value="" disabled>Select Position</option>
+                    {["Designer Intern", "Developer", "Senior Developer", "Human Resource Intern"].map(pos => <option key={pos} value={pos}>{pos}</option>)}
+                </select>
+                <label>Position<span className="required">*</span></label>
+
+                </div>
 
             <div className="form-group file-upload">
               <input type="file" id="resume" className="file-input" onChange={handleFileChange} required />

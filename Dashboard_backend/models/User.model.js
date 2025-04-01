@@ -18,6 +18,9 @@ const UserSchema= new mongoose.Schema({
         minlength:8,
         select:false
     },
+    phone:{
+        type:String,
+    },
     role:{
         type:String,
         enum:['Employee','HR'],
@@ -27,6 +30,9 @@ const UserSchema= new mongoose.Schema({
         type:Boolean,
         default:true,
     },  
+    profile:{
+        type:String,
+    }
 },{
     timestamps:true,
 });

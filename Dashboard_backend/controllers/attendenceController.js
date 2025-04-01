@@ -13,7 +13,7 @@ const markAttendance = async (req, res) => {
         const existingRecord = await Attendance.findOne({ employeeId, date: today });
 
         if (existingRecord) {
-            return res.status(400).json({ message: "Attendance already marked for today" });
+            return res.status(200).json({ message: "Attendance already marked for today" });
         }
         const attendance = new Attendance({
             employeeId,

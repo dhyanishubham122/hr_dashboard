@@ -1,3 +1,4 @@
+/* Overlay for popup */
 .popup-overlay {
     position: fixed;
     top: 0;
@@ -11,6 +12,7 @@
     z-index: 1000;
 }
 
+/* Popup container */
 .add-candidate {
     background-color: white;
     border-radius: 25px;
@@ -19,6 +21,7 @@
     text-align: center;
 }
 
+/* Header */
 .popup-header {
     display: flex;
     justify-content: center;
@@ -46,6 +49,7 @@
     color: white;
 }
 
+/* Form Styling */
 .popup-form {
     padding: 20px;
     margin-top: 20px;
@@ -58,22 +62,36 @@
     gap: 15px;
 }
 
+/* Input and Select Styling */
 .form-group {
     position: relative;
     display: flex;
     flex-direction: column;
 }
 
-.form-group input {
+/* Common Styles for Input and Select */
+.form-group input,
+.form-group select {
     width: 100%;
-    padding: 15px 10px 5px;
+    padding: 15px 10px;
     border: 1px solid #4b0082;
     border-radius: 10px;
     font-size: 14px;
     background-color: #f9f9f9;
     outline: none;
+    appearance: none; /* Removes default browser styles */
+    cursor: pointer;
 }
 
+/* Customizing Select Dropdown */
+.form-group select {
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' width='20' height='20' fill='gray'><path d='M7 10l5 5 5-5H7z'/></svg>"); 
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 16px;
+}
+
+/* Floating Label Effect */
 .form-group label {
     position: absolute;
     top: 13px;
@@ -83,20 +101,26 @@
     background: white;
     padding: 0 5px;
     transition: 0.3s;
+    pointer-events: none;
 }
 
+/* Move label up when input/select is focused or has value */
 .form-group input:focus + label,
-.form-group input:not(:placeholder-shown) + label {
+.form-group input:not(:placeholder-shown) + label,
+.form-group select:focus + label,
+.form-group select:not([value=""]) + label {
     top: -7px;
     font-size: 12px;
     color: #4b0082;
 }
 
+/* Required Asterisk */
 .required {
     color: red;
 }
 
-.file-upload {
+/* File Upload & Calendar Styles */
+.file-upload, .cal {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -106,7 +130,7 @@
     width: 100%;
     padding: 15px;
     border: 2px solid #4b0082;
-    border-radius: 25px;
+    border-radius: 10px;
     font-size: 14px;
     background-color: #f9f9f9;
     outline: none;
@@ -121,6 +145,7 @@
     width: 100%;
 }
 
+/* Checkbox Declaration */
 .declaration {
     display: flex;
     align-items: center;
@@ -132,6 +157,7 @@
     accent-color: #4b0082;
 }
 
+/* Footer and Button */
 .popup-footer {
     padding: 20px;
     text-align: center;

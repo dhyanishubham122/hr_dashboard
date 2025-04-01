@@ -164,7 +164,7 @@ const Candidates = () => {
             }
         };
         fetchCandidates();
-    }, [filters]);
+    }, [filters,showPopup]);
 
     const handleFilterChange = (e) => {
         setFilters({ ...filters, [e.target.name]: e.target.value });

@@ -1,28 +1,34 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { PiEyeBold } from "react-icons/pi";
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-
+import { AuthContext } from '../context/AuthContext.jsx';
 function Login() {
+  const apiUrl = import.meta.env.VITE_API_URL;
   const [email,setEmail]=useState('');
   const [password,setPassword]=useState('');
+  const [message,setMessage]=useState('');
   const navigate=useNavigate();
- 
+  const {login} =useContext(AuthContext);
   const handleSubmit = async(e) => {
     e.preventDefault();
-    const response= await fetch('http://localhost:4000/user/login',{
+    const response= await fetch(`${apiUrl}/user/login`,{
       method:'POST',
       headers:{
         'Content-Type': 'application/json',
         },
         body:JSON.stringify({email,password})
     });
+    const data=await response.json();
+
     if(!response.ok){
+      // console.log(message);
+      setMessage(data.message);
       throw new Error('faied to login');
     }
-    const data=await response.json();
-    console.log(data);
+    alert(data.message);
+    login(data.accessToken);
     setEmail('');
     setPassword('');
     navigate('/candidates');
@@ -67,6 +73,7 @@ function Login() {
             </div>
             <button type="submit" className="register-btn">LOGIN</button>
           </form>
+          <p style={{ paddingLeft:'24px', marginTop:'10px',  color:'red'}}>{message}</p>
           <p className="toggle-link">
             Don't have an account? <Link to="/signup">Register</Link>
           </p>

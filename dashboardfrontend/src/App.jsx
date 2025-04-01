@@ -10,22 +10,19 @@ import Employees from './pages/Employee/Employee.jsx';
 import Attendance from './pages/Attendence/Attendence.jsx'
 import Leave from './pages/Leaves/Leaves.jsx';  
 import Logout from './pages/Logout/Logout.jsx';
+import ProtectedRoute from './pages/ProtectedRoute.jsx';
 function App() {
   return (
-    <Router>
+ 
     <Routes>
       <Route path="/login" element={<Login />} />
       <Route path="/signup" element={<Signup />} />
       <Route path="/" element={<Navigate to="/signup" />} />
 
-      <Route element={<Layout />}>
-        <Route path="/candidates" element={<Candidates />} />
-        <Route path="/employees" element={<Employees />} />
-        <Route path="/attendance" element={<Attendance />} />
-        <Route path="/leaves" element={<Leave />} />
+      <Route path="/*" element={<ProtectedRoute><Layout /></ProtectedRoute>}>
       </Route>
     </Routes>
-  </Router>
+
   );
 }
 const Layout = () => {
