@@ -6,13 +6,18 @@ const LeaveSchema = new mongoose.Schema({
         ref: "Employee", // Refers to the Employee Model
         required: true,
     },
+    designation:{
+        type:String,
+        enum:["Intern", "Full Time","Developer", "Junior","Senior","Team Lead","Senior Developer"],
+        required:true,
+    },
     startDate: {
         type: Date,
         required: true,
     },
     endDate: {
         type: Date,
-        required: true,
+        // required: true,
     },
     reason: {
         type: String,

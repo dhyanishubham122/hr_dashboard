@@ -66,6 +66,7 @@ const employeefilter=async(req,res)=>{
     try {
         const filters={};
         if(req.query.position) filters.position=req.query.position;
+        if(req.query.status) filters.status=req.query.status;
         if (req.query.search) {
             filters.$or = [
                 { name: { $regex: req.query.search, $options: "i" } },  

@@ -1,19 +1,19 @@
-import {React,useState} from 'react';
+import {React,useContext,useState} from 'react';
 import { FaUsers, FaUserClock, FaSignOutAlt } from 'react-icons/fa';
 import { IoSearch } from 'react-icons/io5';
 import { BsBarChartFill } from "react-icons/bs";
 import { HiOutlineSparkles } from "react-icons/hi";
 import { useNavigate } from 'react-router-dom';
 import './Sidebar.css';
+import { AuthContext } from '../../context/AuthContext.jsx';
 import Logout from '../../pages/Logout/Logout.jsx'
 const Sidebar = () => {
   const navigate = useNavigate();
   const [showLogoutModal, setShowLogoutModal] = useState(false);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false); // State for toggling sidebar
-
+  const {logout}=useContext(AuthContext);
   const handleLogout = () => {
-    // Your logout logic here
-      navigate('/login')
+      logout();
     setShowLogoutModal(false);
   };
   return (

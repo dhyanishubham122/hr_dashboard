@@ -1,4 +1,5 @@
 const Leave = require("../models/Leave.model.js");
+const uploadoncloudinary=require("../config/cloudinary.js");
 
 const createLeave = async (req, res) => {
     try {
@@ -10,14 +11,14 @@ const createLeave = async (req, res) => {
         if (!req.file) {
             return res.status(400).json({ message: "Please upload a document (PDF only)." });
         }
-        let pdfUrl = req.file.path ? await uploadOnCloudinary(req.file.path) : "";
+        let pdfUrl = req.file.path ? await uploadoncloudinary(req.file.path) : "";
         if (!pdfUrl) {
             return res.status(400).json({ message: "Document upload failed. Please try again." });
         }
 
         const newLeave = new Leave({
-            employeeId,
-            leaveDate,
+            employee:employeeId,
+            startDate:leaveDate,
             reason,
             designation,
             document: pdfUrl, 
@@ -54,9 +55,12 @@ const updateLeaveStatus = async (req, res) => {
         res.status(500).json({ message: "Internal Server Error", error: error.message });
     }
 };
+
+
+
 const getAllLeaves = async (req, res) => {
     try {
-        const leaves = await Leave.find().populate("employeeId");
+        const leaves = await Leave.find().populate("employee");
         res.status(200).json(leaves);
     } catch (error) {
         console.error("Error fetching leaves:", error.message);
@@ -87,5 +91,26 @@ const deleteLeave = async (req, res) => {
         res.status(500).json({ message: "Internal Server Error", error: error.message });
     }
 };
+const leavefilter=async(req,res)=>{
+    try {
+        // filter.status = new RegExp(`^${req.query.status}$`, "i"); // Case-insensitive match
+        const filter={};
+        if(req.query.Status)
+            filter.status=req.query.Status;
+        if(req.query.date)
+            filter.startDate=req.query.date;
+        if(req.query.search)
+            filter.employee=req.query.search;
+        const leaves=await Leave.find(filter).populate("employee");
+        if(!leaves.length)
+            return res.status(200).json({message:"No leaves found"});
 
-module.exports = { createLeave, updateLeaveStatus, getAllLeaves, getApprovedLeaves, deleteLeave };
+      return  res.status(200).json(leaves);
+    } catch (error) {
+        console.error("Error fetching leaves:", error.message);
+        res.status(500).json({ message: "Internal Server Error", error: error.message });
+    }
+}
+
+
+module.exports = { createLeave, updateLeaveStatus, getAllLeaves, getApprovedLeaves, deleteLeave,leavefilter };
