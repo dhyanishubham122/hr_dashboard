@@ -69,7 +69,7 @@ const Leaves = () => {
           </select>
         </div>
         <div className="search-add-group">
-          <input type="text" placeholder="Search" className="search" />
+          <input type="text" placeholder="Search"  className="search" />
           <button className="add-leave-btn" onClick={()=>setShowPopup(true)}>Add Leave</button>
         </div>
       </div>
@@ -103,7 +103,7 @@ const Leaves = () => {
                   <span className="status approved">Approved</span>
                 </td> */}
                 <td>
-                  <select className='status-dropdowns' value={leave.status} onChange={(e) => handleStatusChange(leave._id, e.target.value)}>
+                  <select className={`status-dropdowns ${leave.status}`} value={leave.status} onChange={(e) => handleStatusChange(leave._id, e.target.value)}>
                     <option value="Pending">Pending</option>
                     <option value="Approved">Approved</option>
                     <option value="Rejected">Rejected</option>

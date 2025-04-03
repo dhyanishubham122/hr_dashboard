@@ -266,7 +266,7 @@ const Candidates = () => {
                                     <td>{candidate.phone}</td>
                                     <td>{candidate.position}</td>
                                     <td>
-                                        <select className='status-dropdowns' value={candidate.status} onChange={(e) => handleStatusChange(candidate._id, e.target.value)}>
+                                        <select className={`status-dropdowns ${candidate.status}`} value={candidate.status} onChange={(e) => handleStatusChange(candidate._id, e.target.value)}>
                                             <option value="New">New</option>
                                             <option value="Scheduled">Scheduled</option>
                                             <option value="Ongoing">Ongoing</option>
