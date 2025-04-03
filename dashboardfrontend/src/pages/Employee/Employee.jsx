@@ -130,6 +130,8 @@ import '../Employee/Employee.css';
 import EditEmployee from "../../components/popupmodels/EditEmployee";
 
 const Employees = () => {
+  const apiUrl = import.meta.env.VITE_API_URL;
+
   const [showPopup, setShowPopup] = useState(false);
   const [selectedEmployeeId, setSelectedEmployeeId] = useState(null);
   const [menuOpen, setMenuOpen] = useState(null);
@@ -143,7 +145,7 @@ const Employees = () => {
 
   const fetchEmployees = async () => {
     try {
-      let url = `http://localhost:4000/employee/searchemployee?`;
+      let url = `${apiUrl}/employee/searchemployee?`;
       if (position) url += `position=${position}&`;
       if (search) url += `search=${search}`;
 
@@ -156,7 +158,7 @@ const Employees = () => {
   };
   const handleDeleteEmployee = async (employeeId) => {
     try {
-      const response = await fetch(`http://localhost:4000/employee/delete/${employeeId}`, {
+      const response = await fetch(`${apiUrl}/employee/delete/${employeeId}`, {
         method: 'DELETE'
       });
 

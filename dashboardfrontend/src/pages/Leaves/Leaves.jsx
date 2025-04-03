@@ -5,6 +5,8 @@ import '../Leaves/Leaves.css'
 import {useState,useEffect} from 'react';
 import AddLeave from "../../components/popupmodels/AddLeave";
 const Leaves = () => {
+  const apiUrl = import.meta.env.VITE_API_URL;
+
   const [showPopup, setShowPopup] = useState(false);
   const [date,setDate]=useState(new Date().toISOString().split("T")[0]);
   console.log("date is p :",date);
@@ -16,7 +18,7 @@ const Leaves = () => {
     try {
       console.log("status is :",status);
       console.log("date  is :",date);
-         const response = await fetch(`http://localhost:4000/leave/leavefilter?Status=${status}&&date=${date}&&search=${search}`,{
+         const response = await fetch(`${apiUrl}/leave/leavefilter?Status=${status}&&date=${date}&&search=${search}`,{
           method:'GET',
          })
   
@@ -39,7 +41,7 @@ const Leaves = () => {
    const handleStatusChange=async(leaveId, status)=>{
      console.log("leaveId",leaveId);
      console.log("status",status);
-     const response=await fetch(`http://localhost:4000/leave/leavestatus/${leaveId}`,{
+     const response=await fetch(`${apiUrl}/leave/leavestatus/${leaveId}`,{
       method:'PATCH',
       headers:{
         'Content-Type':'application/json',

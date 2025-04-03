@@ -11,6 +11,7 @@ const AddLeave = ({ onClose }) => {
   const [employee, setEmployee] = useState([]); // Store all employee names
   const [filteredNames, setFilteredNames] = useState([]); // Store filtered results
   const [showDropdown, setShowDropdown] = useState(false); // Track dropdown visibility
+  const apiUrl = import.meta.env.VITE_API_URL;
 
   const handleFileChange = (e) => {
     setDocument(e.target.files[0]);
@@ -19,7 +20,7 @@ const AddLeave = ({ onClose }) => {
   useEffect(() => {
     const fetchemployees = async () => {
       try {
-        const response = await fetch('http://localhost:4000/employee/allemployess', {
+        const response = await fetch(`${apiUrl}/employee/allemployess`, {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',
@@ -68,7 +69,7 @@ const AddLeave = ({ onClose }) => {
         formData.append("reason", reason);
         formData.append("designation", designation);
         formData.append("document", document);
-     const response= await fetch('http://localhost:4000/leave/create',{
+     const response= await fetch(`${apiUrl}/leave/create`,{
         method:'POST',
         body:formData,
      })

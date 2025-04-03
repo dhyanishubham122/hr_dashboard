@@ -11,15 +11,16 @@ const Attendance = () => {
     const [showPopup, setShowPopup] = useState(false);
      const[selectedEmployeeId,setSelectedEmployeeId]=useState('');
      const [filters, setFilters] = useState({ status: ''});
+     const apiUrl = import.meta.env.VITE_API_URL;
 
     useEffect(() => {
         const fetchEmployees = async () => {
             try {
-                const response = await axios.get('http://localhost:4000/employee/searchemployee', { params: filters });
+                const response = await axios.get(`${apiUrl}/employee/searchemployee`, { params: filters });
                 console.log(filters);
                 console.log("response ",response);
                 setEmployees(response.data);
-                await axios.post('http://localhost:4000/attendence/todayattendance');
+                await axios.post(`${apiUrl}/attendence/todayattendance`);
 
             } catch (error) {
                 console.error('Error fetching employees:', error);
@@ -32,7 +33,7 @@ const Attendance = () => {
     };
     const handleStatusChange = async (employeeId, status) => {
         try {
-           const response= await axios.post('http://localhost:4000/attendence/markattendence', { employeeId, status });
+           const response= await axios.post(`${apiUrl}/attendence/markattendence`, { employeeId, status });
            alert(response.data.message || "Attendance updated successfully!");
          console.log("respinse is :",response); 
            setEmployees((prevEmployees) =>

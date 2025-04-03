@@ -17,7 +17,7 @@ function Signup() {
     alert("Passwords don't match");
     }
       try {
-        const response=await fetch(`http://localhost:4000/user/signup`,{
+        const response=await fetch(`${api_url}/user/signup`,{
           method:'POST',
           headers:{
             'Content-Type':'application/json',

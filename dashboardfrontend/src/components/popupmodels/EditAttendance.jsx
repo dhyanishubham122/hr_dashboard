@@ -11,7 +11,7 @@
       const handleSubmit=async(e)=>{
         e.preventDefault()
        try {
-        const response= await axios.post('http://localhost:4000/attendence/markattendence', { employeeId, status });
+        const response= await axios.post(`${apiUrl}/attendence/markattendence`, { employeeId, status });
         alert(response.data.message || "Attendance updated successfully!");
         onClose();
        } catch (error) {

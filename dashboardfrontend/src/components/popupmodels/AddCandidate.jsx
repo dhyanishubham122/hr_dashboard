@@ -8,6 +8,7 @@ const AddCandidate = ({ onClose }) => {
   const [position, setPosition] = useState("");
   const [experience, setExperience] = useState("");
   const [resume, setResume] = useState(null);
+  const apiUrl = import.meta.env.VITE_API_URL;
 
   const handleFileChange = (e) => {
     setResume(e.target.files[0]);
@@ -30,7 +31,7 @@ const AddCandidate = ({ onClose }) => {
     formData.append("resume", resume);
 
     try {
-      const response = await fetch("http://localhost:4000/candidate/add", {
+      const response = await fetch(`${apiUrl}/candidate/add`, {
         method: "POST",
         body: formData,
       });

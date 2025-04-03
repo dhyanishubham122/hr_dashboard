@@ -149,6 +149,8 @@ import AddCandidate from '../../components/popupmodels/AddCandidate.jsx';
 import axios from 'axios';
 
 const Candidates = () => {
+    const apiUrl = import.meta.env.VITE_API_URL;
+
     const [menuOpen, setMenuOpen] = useState(null);
     const [showPopup, setShowPopup] = useState(false);
     const [candidates, setCandidates] = useState([]);
@@ -157,7 +159,7 @@ const Candidates = () => {
     useEffect(() => {
         const fetchCandidates = async () => {
             try {
-                const response = await axios.get('http://localhost:4000/candidate/searchfilter', { params: filters });
+                const response = await axios.get(`${apiUrl}/candidate/searchfilter`, { params: filters });
                 setCandidates(response.data);
             } catch (error) {
                 console.error("Error fetching candidates:", error);
@@ -172,7 +174,7 @@ const Candidates = () => {
 
     const handleStatusChange = async (id, newStatus) => {
         try {
-            await axios.patch(`http://localhost:4000/candidate/update/${id}`, { status: newStatus });
+            await axios.patch(`${apiUrl}/candidate/update/${id}`, { status: newStatus });
             setCandidates((prevCandidates) =>
                 prevCandidates.map((candidate) =>
                     candidate._id === id ? { ...candidate, status: newStatus } : candidate
@@ -180,7 +182,7 @@ const Candidates = () => {
             );
 
             if (newStatus === "Selected") {
-                const response = await axios.post(`http://localhost:4000/employee/candidatetoemployee/${id}`);
+                const response = await axios.post(`${apiUrl}/employee/candidatetoemployee/${id}`);
                 console.log(response.data);
 
                 if (response.status === 200) {
@@ -195,7 +197,7 @@ const Candidates = () => {
 
     const deleteCandidate = async (id) => {
         try {
-            await axios.delete(`http://localhost:4000/candidate/delete/${id}`);
+            await axios.delete(`${apiUrl}/candidate/delete/${id}`);
             setCandidates((prevCandidates) => prevCandidates.filter(candidate => candidate._id !== id));
             alert("Candidate deleted successfully");
         } catch (error) {

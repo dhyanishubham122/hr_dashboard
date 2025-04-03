@@ -11,11 +11,12 @@
     const [department, setDepartment] = useState("");
     const [joining_Date, setJoining_Date] = useState('');
     const [profile, setProfile] = useState(null);
+    const apiUrl = import.meta.env.VITE_API_URL;
 
     useEffect(() => {
         const fetchEmployeeDetails = async () => {
         try {
-            const response = await fetch(`http://localhost:4000/employee/${employeeId}`);
+            const response = await fetch(`${apiUrl}/employee/${employeeId}`);
             const data = await response.json();
             setName(data.name);
             setEmail(data.email);
@@ -50,7 +51,7 @@
         }
 
         try {
-        const response = await fetch(`http://localhost:4000/employee/updateemployee/${employeeId}`, {
+        const response = await fetch(`${apiUrl}/employee/updateemployee/${employeeId}`, {
             method: "PATCH",
             body: formData,
         });
