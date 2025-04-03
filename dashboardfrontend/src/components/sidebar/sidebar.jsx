@@ -4,7 +4,7 @@ import { IoSearch } from 'react-icons/io5';
 import { BsBarChartFill } from "react-icons/bs";
 import { HiOutlineSparkles } from "react-icons/hi";
 import { useNavigate } from 'react-router-dom';
-import './Sidebar.css';
+import '../sidebar/sidebar.css';
 import { AuthContext } from '../../context/AuthContext.jsx';
 import Logout from '../../pages/Logout/Logout.jsx'
 const Sidebar = () => {
