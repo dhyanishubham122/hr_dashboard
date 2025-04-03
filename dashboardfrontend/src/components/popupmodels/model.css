@@ -178,3 +178,15 @@
 .save-button:hover {
     background-color: #3a0066;
 }
+.search-results {
+    list-style: none; 
+    padding: 0; 
+    margin: 0; 
+    text-align: left; 
+  }
+  
+  .search-item {
+    padding: 5px 10px; 
+    cursor: pointer; 
+  }
+  

@@ -156,4 +156,12 @@
   .doc-btn:hover {
     background-color: #5a1a9a;
   }
+
+  status-dropdowns option[value="Approved"], .status-dropdowns.Approved {
+    color: green;
+}
+status-dropdowns option[value="Pending"], .status-dropdowns.Pending {
+  color: rgb(240, 216, 7);
+}
+
   

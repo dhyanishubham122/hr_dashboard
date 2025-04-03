@@ -39,6 +39,15 @@ const EmployeeSchema= new mongoose.Schema({
         enum: ["Employee", "HR"], 
         default: "Employee"
     },
+    status:{
+        type:String,
+        enum:["Present","Absent"],
+        default:"Present",
+    },
+    lastupdatedDate:{
+        type:String,
+        default: new Date().toISOString().split("T")[0],
+    },
 
 },{
     timestamps:true,

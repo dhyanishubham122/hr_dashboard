@@ -179,23 +179,23 @@ tr:hover {
 }
 
 /* Text color for each status */
-.status-dropdowns option[value="New"] {
+.status-dropdowns option[value="New"],.status-dropdowns.New{
     color: black;
 }
 
-.status-dropdowns option[value="Scheduled"] {
+.status-dropdowns option[value="Scheduled"],.status-dropdowns.Scheduled {
     color: #e6b800; /* Yellow */
 }
 
-.status-dropdowns option[value="Ongoing"] {
+.status-dropdowns option[value="Ongoing"],.status-dropdowns.Ongoing {
     color: #28a745; /* Green */
 }
 
-.status-dropdowns option[value="Selected"] {
+.status-dropdowns option[value="Selected"],.status-dropdowns.Selected {
     color: #6f42c1; /* Purple */
 }
 
-.status-dropdowns option[value="Rejected"] {
+.status-dropdowns option[value="Rejected"],.status-dropdowns.Rejected {
     color: #dc3545; /* Red */
 }
 

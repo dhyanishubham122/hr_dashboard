@@ -8,6 +8,7 @@ const candidateRoutes=require('./routes/candidateroutes.js');
 const employeeRoutes=require('./routes/employeeroutes.js');
 const attendanceRoutes=require('./routes/attendenceroutes.js');
 const leaveRoutes=require('./routes/leaveroutes.js');
+const resetEmployeeStatus =require('./cornjobs.js');
 dotenv.config();
 const port=process.env.PORT || 3000;
 app.use(express.json());
@@ -17,6 +18,7 @@ app.use(cors({ origin: '*' }));
 app.get('/',(req,res)=>{
     res.send(`Backend is Running on port ${port}`);
 })
+
 app.use('/user',userRoutes);
 app.use('/candidate',candidateRoutes);
 app.use('/employee',employeeRoutes);

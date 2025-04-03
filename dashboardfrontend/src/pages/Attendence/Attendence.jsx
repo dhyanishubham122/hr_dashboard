@@ -3,33 +3,51 @@ import React, { useState, useEffect } from 'react';
 import '../Attendence/Attendence.css';
 import { FiMoreVertical } from 'react-icons/fi';
 import axios from 'axios';
+import EditAttendence from '../../components/popupmodels/EditAttendance.jsx';
 
 const Attendance = () => {
     const [employees, setEmployees] = useState([]);
     const [menuOpen, setMenuOpen] = useState(null);
-    
+    const [showPopup, setShowPopup] = useState(false);
+     const[selectedEmployeeId,setSelectedEmployeeId]=useState('');
+     const [filters, setFilters] = useState({ status: ''});
+
     useEffect(() => {
         const fetchEmployees = async () => {
             try {
-                const response = await axios.get('http://localhost:4000/employee/allemployess');
+                const response = await axios.get('http://localhost:4000/employee/searchemployee', { params: filters });
+                console.log(filters);
+                console.log("response ",response);
                 setEmployees(response.data);
+                await axios.post('http://localhost:4000/attendence/todayattendance');
+
             } catch (error) {
                 console.error('Error fetching employees:', error);
             }
         };
         fetchEmployees();
-    }, []);
-
+    }, [filters,showPopup]);
+    const handleFilterChange= (e) => {
+        setFilters({ status: e.target.value });
+    };
     const handleStatusChange = async (employeeId, status) => {
         try {
-            await axios.post('http://localhost:4000/attendence/markattendence', { employeeId, status });
-            setEmployees((prevEmployees) =>
+           const response= await axios.post('http://localhost:4000/attendence/markattendence', { employeeId, status });
+           alert(response.data.message || "Attendance updated successfully!");
+         console.log("respinse is :",response); 
+           setEmployees((prevEmployees) =>
                 prevEmployees.map((emp) =>
                     emp._id === employeeId ? { ...emp, status } : emp
                 )
             );
+
         } catch (error) {
             console.error('Error updating attendance:', error);
+            if (error.response && error.response.data && error.response.data.message) {
+                alert(error.response.data.message);
+            } else {
+                alert("Failed to update attendance. Please try again.");
+            }
         }
     };
     
@@ -38,7 +56,7 @@ const Attendance = () => {
             <div className="attendance-header">
                 <div className="controls">
                     <div className="filter-group">
-                        <select className="status-dropdown">
+                        <select className="status-dropdown" name="status" onChange={handleFilterChange}>
                             <option>Status</option>
                             <option>Present</option>
                             <option>Absent</option>
@@ -76,11 +94,9 @@ const Attendance = () => {
                                     <td>
                                         <select
                                             className="status-dropdown"
-                                            style={{ color:  "green" }}
+                                            style={{ color: employee.status === "Present" ? "green" : "red" }}
                                             value={employee.status || "Present"}
-                                            onChange={(e) => {
-                                                e.target.style.color = e.target.value === "Absent" ? "red" : "green"; 
-                                                handleStatusChange(employee._id, e.target.value)}}
+                                            onChange={(e) => handleStatusChange(employee._id, e.target.value)}
                                         >
                                             {/* <option>{employee.status}</option> */}
                                             <option value="Status">Status</option>
@@ -94,7 +110,10 @@ const Attendance = () => {
                                         </button>
                                         {menuOpen === index && (
                                             <div className="dropdown-menu">
-                                                <button className="action-btn">Edit</button>
+                                                <button className="action-btn" onClick={()=>{
+                                                     setShowPopup(true);
+                                                     setSelectedEmployeeId(employee._id);
+                                                }}>Edit</button>
                                                 <button className="action-btn delete">Delete</button>
                                             </div>
                                         )}
@@ -109,6 +128,12 @@ const Attendance = () => {
                     </tbody>
                 </table>
             </div>
+            {showPopup && (
+        <EditAttendence
+          employeeId={selectedEmployeeId}
+          onClose={() => setShowPopup(false)} 
+        />
+      )}
         </div>
     );
 };

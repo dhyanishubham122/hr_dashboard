@@ -16,6 +16,7 @@ const candidate_to_employee=async(req,res)=>{
             //     return res.status(400).json({ message: "Only selected candidates can be moved to employees", canditae:candidate.status });
             // }
             const existingEmployee = await Employee.findOne({ email: candidate.email });
+
             if (existingEmployee) {
                 return res.status(400).json({ message: "Employee already exists" });
             }
@@ -66,6 +67,7 @@ const employeefilter=async(req,res)=>{
     try {
         const filters={};
         if(req.query.position) filters.position=req.query.position;
+        if(req.query.status) filters.status=req.query.status;
         if (req.query.search) {
             filters.$or = [
                 { name: { $regex: req.query.search, $options: "i" } },  
