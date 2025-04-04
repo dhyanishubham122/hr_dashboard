@@ -1,6 +1,6 @@
 import React, { useState,useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { PiEyeBold } from "react-icons/pi";
+import { PiEyeBold,PiEyeSlash } from "react-icons/pi";
 import { useNavigate } from 'react-router-dom';
 
 function Signup() {
@@ -8,15 +8,21 @@ function Signup() {
   const [email,setEmail]=useState('');
   const [password,setPassword]=useState('');
   const [confirmpassword,setConfirmPassword]=useState('');
-  const api_url = import.meta.env.VITE_API_URI;
+  const apiUrl = import.meta.env.VITE_API_URL;
   const navigate=useNavigate();
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+
+  const togglePasswordVisibility = () => {
+    setShowPassword((prev) => !prev);
+  };
  const handleformsubmit=async(e)=>{
   e.preventDefault();
   if(password!==confirmpassword){
     alert("Passwords don't match");
     }
       try {
-        const response=await fetch(`${api_url}/user/signup`,{
+        const response=await fetch(`${apiUrl}/user/signup`,{
           method:'POST',
           headers:{
             'Content-Type':'application/json',
@@ -25,15 +31,17 @@ function Signup() {
             body:JSON.stringify({name,email,password,confirmpassword})
             });
             console.log("respone is :",response)
-            if(!response.ok){
-              alert("Failed to create account");
-            }
             const data=await response.json();
+
+            if(!response.ok){
+              alert(data.message);
+            }
             console.log(data);
             setName('');
             setEmail('');
             setPassword('');
             setConfirmPassword('');
+            alert(data.message);
             navigate('/login');
       } catch (error) {
         console.log(error);
@@ -77,19 +85,24 @@ function Signup() {
               <input type="email" id="email" placeholder="Email Address" value={email} onChange={(e)=>setEmail(e.target.value)} required />
             </div>
             <div className="form-group-signup">
-              <label htmlFor="password">PASSWORD*</label>
-              <div className="password-input">
-                <input type="password" id="password" placeholder="Password" value={password} onChange={(e)=>setPassword(e.target.value)} required />
-                <span className="eye-icon"><PiEyeBold /></span>
+                <label htmlFor="password">PASSWORD*</label>
+                <div className="password-input">
+                  <input type={showPassword ? "text" : "password"} id="password"placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} required/>
+                  <span className="eye-icon" onClick={togglePasswordVisibility} style={{ cursor: "pointer" }}>
+                    {showPassword ? <PiEyeSlash /> : <PiEyeBold />}
+                  </span>
+                </div>
               </div>
-            </div>
             <div className="form-group-signup">
-              <label htmlFor="confirmPassword">CONFIRM PASSWORD*</label>
-              <div className="password-input">
-                <input type="password" id="confirmPassword" placeholder="Confirm Password" value={confirmpassword} onChange={(e)=>setConfirmPassword(e.target.value)} required />
-                <span className="eye-icon"><PiEyeBold /></span>
-              </div>
-            </div>
+                <label htmlFor="confirmPassword">CONFIRM PASSWORD*</label>
+                <div className="password-input">
+                  <input type={showConfirmPassword ? "text" : "password"} id="confirmPassword" placeholder="Confirm Password"  value={confirmpassword} onChange={(e) => setConfirmPassword(e.target.value)} required/>
+                  <span className="eye-icon" onClick={() => setShowConfirmPassword((prev) => !prev)} style={{ cursor: "pointer" }}>
+                    {showConfirmPassword ? <PiEyeSlash /> : <PiEyeBold />}
+                  </span>
+                </div>
+          </div>
+
             <button type="submit" className="register-btn">REGISTER</button>
           </form>
           <p className="toggle-link">

@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
-import { PiEyeBold } from "react-icons/pi";
+import { PiEyeBold,PiEyeSlash  } from "react-icons/pi";
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
@@ -13,6 +13,11 @@ function Login() {
   const [message,setMessage]=useState('');
   const navigate=useNavigate();
   const {login} =useContext(AuthContext);
+  const [showPassword, setShowPassword] = useState(false);
+
+  const togglePasswordVisibility = () => {
+    setShowPassword((prev) => !prev);
+  };
   const handleSubmit = async(e) => {
     e.preventDefault();
     const response= await fetch(`${apiUrl}/user/login`,{
@@ -70,12 +75,14 @@ function Login() {
               <input type="email" id="email" placeholder="Email Address" value={email} onChange={(e)=>setEmail(e.target.value)} required />
             </div>
             <div className="form-group-signup">
-              <label htmlFor="password">PASSWORD*</label>
-              <div className="password-input">
-                <input type="password" id="password" placeholder="Password" value={password} onChange={(e)=>setPassword(e.target.value)} required />
-                <span className="eye-icon"><PiEyeBold /></span>
+                <label htmlFor="password">PASSWORD*</label>
+                <div className="password-input">
+                  <input type={showPassword ? "text" : "password"} id="password"placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} required/>
+                  <span className="eye-icon" onClick={togglePasswordVisibility} style={{ cursor: "pointer" }}>
+                    {showPassword ? <PiEyeSlash /> : <PiEyeBold />}
+                  </span>
+                </div>
               </div>
-            </div>
             <button type="submit" className="register-btn">LOGIN</button>
           </form>
           <p style={{ paddingLeft:'24px', marginTop:'10px',  color:'red'}}>{message}</p>
