@@ -1,6 +1,7 @@
 import React from 'react';
 import { FaBell, FaEnvelope, FaUserCircle } from 'react-icons/fa';
-import '../topbar/topbar.css';
+// import '../topbar/topbar.css';
+import '../partial/navigation.css'
 
 const Topbar = () => {
   return (

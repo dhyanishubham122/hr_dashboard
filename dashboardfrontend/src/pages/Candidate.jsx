@@ -143,9 +143,12 @@
 
 // export default Candidates;
 import React, { useState, useEffect } from 'react';
-import '../Candidate/Candidate.css';
+// import '../Candidate/Candidate.css';
+// import './Candidate/Candidate.css'
+import './pages.css';
+
 import { FiMoreVertical } from 'react-icons/fi';
-import AddCandidate from '../../components/popupmodels/AddCandidate.jsx';
+import AddCandidate from '../components/popupmodels/AddCandidate.jsx';
 import axios from 'axios';
 
 const Candidates = () => {

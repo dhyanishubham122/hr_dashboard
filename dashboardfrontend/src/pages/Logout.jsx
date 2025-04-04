@@ -1,5 +1,7 @@
 import React from 'react';
-import './Logout.css';
+// import './Logout.css';
+// import './Logout/Logout.css'
+import '../components/popupmodels/model.css'
 
 const Logout = ({ onCancel, onLogout }) => {
 

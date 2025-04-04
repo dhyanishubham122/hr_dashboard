@@ -1,14 +1,17 @@
 
 import React, { useState, useEffect } from 'react';
-import '../Attendence/Attendence.css';
+import './pages.css';
+
 import { FiMoreVertical } from 'react-icons/fi';
 import axios from 'axios';
-import EditAttendence from '../../components/popupmodels/EditAttendance.jsx';
+import EditAttendence from '../components/popupmodels/EditAttendance.jsx';
 
 const Attendance = () => {
     const [employees, setEmployees] = useState([]);
     const [menuOpen, setMenuOpen] = useState(null);
     const [showPopup, setShowPopup] = useState(false);
+    const [search, setSearch] = useState('');
+
      const[selectedEmployeeId,setSelectedEmployeeId]=useState('');
      const [filters, setFilters] = useState({ status: ''});
      const apiUrl = import.meta.env.VITE_API_URL;
@@ -16,8 +19,9 @@ const Attendance = () => {
     useEffect(() => {
         const fetchEmployees = async () => {
             try {
-                const response = await axios.get(`${apiUrl}/employee/searchemployee`, { params: filters });
+                const response = await axios.get(`${apiUrl}/employee/searchemployee`, {  params: { ...filters, search } });
                 console.log(filters);
+                console.log(search);
                 console.log("response ",response);
                 setEmployees(response.data);
                 await axios.post(`${apiUrl}/attendence/todayattendance`);
@@ -27,7 +31,7 @@ const Attendance = () => {
             }
         };
         fetchEmployees();
-    }, [filters,showPopup]);
+    }, [filters,showPopup,search]);
     const handleFilterChange= (e) => {
         setFilters({ status: e.target.value });
     };
@@ -58,13 +62,13 @@ const Attendance = () => {
                 <div className="controls">
                     <div className="filter-group">
                         <select className="status-dropdown" name="status" onChange={handleFilterChange}>
-                            <option>Status</option>
+                            <option value=''>Status</option>
                             <option>Present</option>
                             <option>Absent</option>
                         </select>
                     </div>
                     <div className="search-add-group">
-                        <input type="text" placeholder="Search" className="search" />
+                        <input type="text" placeholder="Search" className="search" value={search} onChange={(e) => setSearch(e.target.value)} />
                     </div>
                 </div>
             </div>

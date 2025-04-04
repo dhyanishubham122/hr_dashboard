@@ -3,7 +3,9 @@ import { Link } from 'react-router-dom';
 import { PiEyeBold } from "react-icons/pi";
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { AuthContext } from '../context/AuthContext.jsx';
+
+// import { AuthContext } from '../context/AuthContext.jsx';
+import { AuthContext } from '../../context/AuthContext.jsx';
 function Login() {
   const apiUrl = import.meta.env.VITE_API_URL;
   const [email,setEmail]=useState('');
@@ -39,16 +41,19 @@ function Login() {
       <div className="box">
         {/* Left Section */}
         <div className="left-section">
-          <div className="dashboard-image">
-            <div className="image-placeholder">Dashboard Preview</div>
+        <div className="dashboard-image">
+            <div className="image-placeholder">
+              <img src='/dashboardpreview.jpg' alt='dashboard-preview'/>
+              </div>
           </div>
           <div className="text-content">
-            <h2>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</h2>
-            <p>
-              Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-              veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-            </p>
+            <h2>Manage Your Employee Records</h2>
+              <p> 
+                Simplify employee management, track attendance, and handle leave requests  
+                  effortlessly—all in one place. Stay organized and boost productivity with our HRMS.
+              </p>
           </div>
+
           <div className="dots">
             <span className="dot active"></span>
             <span className="dot"></span>

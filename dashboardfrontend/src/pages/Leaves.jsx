@@ -1,9 +1,11 @@
 import React from "react";
 import Calendar from "react-calendar"; // Ensure you install: npm install react-calendar
 import "react-calendar/dist/Calendar.css";
-import '../Leaves/Leaves.css'
+// import '../Leaves/Leaves.css'
+// import './Leaves/Leaves.css'
+import './pages.css';
 import {useState,useEffect} from 'react';
-import AddLeave from "../../components/popupmodels/AddLeave";
+import AddLeave from "../components/popupmodels/AddLeave";
 const Leaves = () => {
   const apiUrl = import.meta.env.VITE_API_URL;
 
@@ -18,6 +20,7 @@ const Leaves = () => {
     try {
       console.log("status is :",status);
       console.log("date  is :",date);
+      console.log("search is :",search);
          const response = await fetch(`${apiUrl}/leave/leavefilter?Status=${status}&&date=${date}&&search=${search}`,{
           method:'GET',
          })
@@ -37,7 +40,7 @@ const Leaves = () => {
     }
   }
   fetchleaves();
-   },[status,date,showPopup]);
+   },[status,date,showPopup,search]);
    const handleStatusChange=async(leaveId, status)=>{
      console.log("leaveId",leaveId);
      console.log("status",status);
@@ -71,7 +74,9 @@ const Leaves = () => {
           </select>
         </div>
         <div className="search-add-group">
-          <input type="text" placeholder="Search"  className="search" />
+          {/* <input type="text" placeholder="Search"  className="search" /> */}
+          <input type="text" placeholder="Search" className="search" value={search} onChange={(e) => setSearch(e.target.value)} />
+
           <button className="add-leave-btn" onClick={()=>setShowPopup(true)}>Add Leave</button>
         </div>
       </div>

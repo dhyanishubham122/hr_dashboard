@@ -1,0 +1,243 @@
+
+.sidebar {
+    width: 250px;
+    background-color: white;
+    color: #333;
+    height: 100vh;
+    position: fixed;
+    left: 0;
+    top: 0;
+    display: flex;
+    flex-direction: column;
+    padding: 20px 0;
+    border-right: 1px solid #e0e0e0;
+    box-shadow: 2px 0 5px rgba(0,0,0,0.05);
+  }
+  
+  .logo {
+    padding: 0 20px 20px;
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+    color: #6a0dad;
+    border-bottom: 1px solid #e0e0e0;
+    margin-bottom: 20px;
+  }
+  
+  .search-container {
+    position: relative;
+    padding: 0 20px;
+    margin-bottom: 20px;
+  }
+  
+  .search-icon {
+    position: absolute;
+    left: 30px;
+    top: 10px;
+    color: #9e9e9e;
+  }
+  
+  .search-input {
+    width: 100%;
+    padding: 8px 8px 8px 35px;
+    border-radius: 50px;
+    border: 1px solid #e0e0e0;
+    background-color: white;
+    color: #333;
+  }
+  
+  .search-input::placeholder {
+    color: #9e9e9e;
+  }
+  
+  .simple-text {
+    padding: 12px 20px;
+    color: #757575;
+    font-size: 14px;
+  }
+  
+  .menu-item {
+    padding: 12px 20px 12px 40px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    transition: all 0.3s;
+  }
+  
+  .menu-item.purple {
+    color: #6a0dad;
+  }
+  
+  .menu-item .icon {
+    margin-right: 10px;
+    color: #6a0dad;
+  }
+  
+  .submenu {
+    padding-left: 20px;
+  }
+  
+  .submenu .menu-item {
+    padding: 8px 20px 8px 40px;
+  }
+  
+  .logout {
+    margin-top: auto;
+    border-top: 1px solid #e0e0e0;
+    padding-top: 20px;
+  }
+  
+  @media (max-width: 768px) {
+    .sidebar {
+      width: 200px;
+    }
+    .menu-item {
+      padding: 10px 15px;
+    }
+    .search-container {
+      padding: 0 15px;
+    }
+    .search-icon {
+      left: 20px;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .sidebar {
+      width: 200px;
+      height: 100vh;
+      position: fixed;
+      left: 0;
+      top: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: flex-start;
+      padding: 10px;
+      border-right: 1px solid #e0e0e0;
+      box-shadow: 2px 0 5px rgba(0,0,0,0.05);
+    }
+    .menu-item {
+      padding: 10px;
+      font-size: 14px;
+    }
+  }
+  /* Base Sidebar Styles */
+  .sidebar {
+    width: 250px;
+    background-color: white;
+    color: #333;
+    height: 100vh;
+    position: fixed;
+    left: 0;
+    top: 0;
+    display: flex;
+    flex-direction: column;
+    padding: 20px 0;
+    border-right: 1px solid #e0e0e0;
+    box-shadow: 2px 0 5px rgba(0,0,0,0.05);
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  /* Hide Sidebar by Default on Small Screens */
+  @media (max-width: 768px) {
+    .sidebar {
+      transform: translateX(-100%);
+    }
+    .sidebar.open {
+      transform: translateX(0);
+    }
+  }
+  
+  /* Hamburger Button */
+  .hamburger {
+    display: none;
+    position: fixed;
+    top: 15px;
+    left: 15px;
+    font-size: 24px;
+    cursor: pointer;
+    z-index: 1000;
+    color: #6a0dad;
+  }
+  
+  @media (max-width: 768px) {
+    .hamburger {
+      display: block;
+    }
+  }
+  
+
+  .topbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    background-color: white;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 90;
+    width: 100%;
+    max-width: 100%;
+    flex-wrap: wrap;
+  }
+  
+  .topbar-left h1 {
+    font-size: 22px;
+    color: #4b0082; /* Indigo color */
+    margin: 0;
+    white-space: nowrap;
+  }
+  
+  .icon-container {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+  }
+  
+  .icon {
+    font-size: 20px;
+    color: #555; /* Dark grey */
+    cursor: pointer;
+    transition: color 0.3s;
+  }
+  
+  .icon:hover {
+    color: #4b0082; /* Indigo on hover */
+  }
+  
+  /* Responsive Adjustments */
+  @media (max-width: 768px) {
+    .topbar {
+      flex-direction: column;
+      align-items: center;
+      padding: 10px;
+    }
+  
+    .topbar-left h1 {
+      font-size: 20px;
+      text-align: center;
+    }
+  
+    .icon-container {
+      justify-content: center;
+      gap: 10px;
+      margin-top: 10px;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .topbar {
+      padding: 8px;
+    }
+  
+    .topbar-left h1 {
+      font-size: 18px;
+    }
+  
+    .icon {
+      font-size: 18px;
+    }
+  }
+  

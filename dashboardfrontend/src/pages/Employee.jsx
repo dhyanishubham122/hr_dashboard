@@ -126,8 +126,11 @@
 
 import React, { useState, useEffect } from "react";
 import { FiMoreVertical } from "react-icons/fi";
-import '../Employee/Employee.css';
-import EditEmployee from "../../components/popupmodels/EditEmployee";
+// import '../Employee/Employee.css';
+// import './Employee/Employee.css'
+import './pages.css';
+
+import EditEmployee from "../components/popupmodels/EditEmployee";
 
 const Employees = () => {
   const apiUrl = import.meta.env.VITE_API_URL;

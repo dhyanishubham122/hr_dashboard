@@ -1,17 +1,20 @@
-import React from 'react';
+import React,{useState,useContext} from 'react';
 import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
-import Signup from './components/signup.jsx';
-import Login from './components/login.jsx';
-import Candidates from './pages/Candidate/Candidate.jsx'
-import Sidebar from './components/sidebar/sidebar.jsx';
-import Topbar from './components/topbar/topbar.jsx';
+import Login from './components/partial/login.jsx'
+import Signup from './components/partial/signup.jsx'
+import Candidates from './pages/Candidate.jsx'
+import Sidebar from './components/partial/sidebar.jsx';
+import Topbar from './components/partial/topbar.jsx';
 import './App.css';
-import Employees from './pages/Employee/Employee.jsx';
-import Attendance from './pages/Attendence/Attendence.jsx'
-import Leave from './pages/Leaves/Leaves.jsx';  
-import Logout from './pages/Logout/Logout.jsx';
+import Employees from './pages/Employee.jsx';
+import Attendance from './pages/Attendence.jsx'
+import Leave from './pages/Leaves.jsx';  
+import Logout from './pages/Logout.jsx';
 import ProtectedRoute from './pages/ProtectedRoute.jsx';
+import { AuthContext } from './context/AuthContext.jsx';
 function App() {
+
+  
   return (
  
     <Routes>
@@ -26,10 +29,18 @@ function App() {
   );
 }
 const Layout = () => {
+  const { logout } = useContext(AuthContext);
+
+  const [showLogoutModal, setShowLogoutModal] = useState(false);
+  const handleLogout = () => {
+    logout();
+    setShowLogoutModal(false);
+  };
   return (
     <div className="app">
-      <Sidebar />
+      
       <div className="main-content">
+      <Sidebar setShowLogoutModal={setShowLogoutModal} />
         <Topbar />
         <Routes>
           <Route path="/candidates" element={<Candidates />} />
@@ -38,6 +49,16 @@ const Layout = () => {
           <Route path="/leaves" element={<Leave />} />
         </Routes>
       </div>
+       {/* Render Logout Modal at the top level */}
+       {showLogoutModal && (
+        <Logout 
+          onCancel={() => setShowLogoutModal(false)} 
+          onLogout={() => {
+            console.log("Logging out...");
+            handleLogout();
+          }} 
+        />
+      )}
     </div>
   );
 };

@@ -1,6 +1,6 @@
 const Leave = require("../models/Leave.model.js");
 const uploadoncloudinary=require("../config/cloudinary.js");
-
+const Employee =require("../models/Employee.model.js")
 const createLeave = async (req, res) => {
     try {
         const { employeeId, leaveDate, reason, designation } = req.body;
@@ -99,9 +99,18 @@ const leavefilter=async(req,res)=>{
             filter.status=req.query.Status;
         if(req.query.date)
             filter.startDate=req.query.date;
-        if(req.query.search)
-            filter.employee=req.query.search;
-        const leaves=await Leave.find(filter).populate("employee");
+        if(req.query.search){
+            const matchingEmployees = await Employee.find({
+                name: { $regex: req.query.search, $options: "i" }
+              }).select('_id'); // getting the id fo the emplue
+            
+              const employeeIds = matchingEmployees.map(emp => emp._id);
+              filter.employee = { $in: employeeIds };
+        }
+            // filter.employee=req.query.search;
+        // const leaves=await Leave.find(filter).populate("employee");
+        const leaves = await Leave.find(filter).populate("employee");
+
         if(!leaves.length)
             return res.status(200).json({message:"No leaves found"});
 

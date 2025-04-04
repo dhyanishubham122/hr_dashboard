@@ -1,5 +1,5 @@
 /* Base Styles */
-* { 
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -7,23 +7,21 @@
 }
 
 body {
-  height: 100vh;
   width: 100vw;
-  overflow: hidden;
-  background-color: #ffffff; 
+  overflow-x: hidden;
+  background-color: #ffffff;
 }
 
 .main-container {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  height: 100vh;
-  padding: 5px;
+  min-height: 100vh; /* Allow full height but not fixed */
+  padding: 10px;
 }
 
 .logo {
-  font-size: 24px;
+  font-size: clamp(20px, 5vw, 24px);
   font-weight: bold;
   color: #4b0082;
   margin-bottom: 20px;
@@ -41,7 +39,6 @@ body {
   display: flex;
   width: 100%;
   max-width: 1000px;
-  height: 80%;
   border-radius: 20px;
   overflow: hidden;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
@@ -50,9 +47,9 @@ body {
 /* Left Section */
 .left-section {
   flex: 1;
-  background-color: #4b0082; 
+  background-color: #4b0082;
   color: white;
-  padding: 50px;
+  padding: clamp(20px, 5vw, 50px);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -67,28 +64,46 @@ body {
 
 .image-placeholder {
   width: 80%;
-  height: 60%;
+  aspect-ratio: 16/9;
   background-color: #ccc;
   display: flex;
   justify-content: center;
   align-items: center;
   border-radius: 10px;
   color: #666;
-  font-size: 16px;
+  font-size: clamp(14px, 3vw, 16px);
+  overflow: hidden;
+}
+.image-placeholder img {
+  max-width: 100%;
+  height: auto;
+  object-fit: cover; /* Ensures the image fills the container properly */
 }
 
-.text-content {
-  margin-bottom: 20px;
-}
-
-.text-content h3 {
-  font-size: 20px;
+/* .text-content h3 {
+  font-size: clamp(16px, 4vw, 20px);
   margin-bottom: 10px;
   text-transform: uppercase;
 }
 
 .text-content p {
-  font-size: 14px;
+  font-size: clamp(12px, 3vw, 14px);
+  line-height: 1.5;
+} */
+
+.text-content {
+  margin-top: 20px; 
+  text-align: center; 
+}
+
+.text-content h2 {
+  font-size: clamp(16px, 4vw, 20px); 
+  margin-bottom: 10px; 
+  text-transform: uppercase; 
+}
+
+.text-content p {
+  font-size: clamp(12px, 3vw, 14px);
   line-height: 1.5;
 }
 
@@ -96,6 +111,7 @@ body {
   display: flex;
   justify-content: center;
   gap: 10px;
+  margin-top: 20px;
 }
 
 .dot {
@@ -113,43 +129,42 @@ body {
 /* Right Section */
 .right-section {
   flex: 1;
-  background-color: #ffffff; 
+  background-color: #ffffff;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  padding: 80px;
+  padding: clamp(20px, 5vw, 80px);
 }
 
 .right-section h2 {
-  font-size: 20px;
-  margin-bottom: 30px;
-  color: #4b0082; 
+  font-size: clamp(18px, 4vw, 20px);
+  margin-bottom: 20px;
+  color: #4b0082;
 }
 
 .form-group-signup {
-  margin-bottom: 20px;
+  margin-bottom: 15px;
 }
 
 .form-group-signup label {
   display: block;
-  font-size: 12px;
-  color: black; 
+  font-size: clamp(10px, 2.5vw, 12px);
+  color: black;
   margin-bottom: 5px;
   text-transform: uppercase;
 }
 
 .form-group-signup input {
   width: 100%;
-  padding: 10px;
-  border: 1px solid rgb(226, 223, 223); 
+  padding: 8px;
+  border: 1px solid rgb(226, 223, 223);
   border-radius: 5px;
-  font-size: 14px;
+  font-size: clamp(12px, 3vw, 14px);
   color: black;
-  background-color: #ffffff; 
+  background-color: #ffffff;
 }
 
 .form-group-signup input::placeholder {
-  color: grey; 
+  color: grey;
 }
 
 .password-input {
@@ -162,36 +177,32 @@ body {
   top: 50%;
   transform: translateY(-50%);
   cursor: pointer;
-  font-size: 16px;
-  color: black; 
+  font-size: clamp(14px, 3vw, 16px);
+  color: black;
 }
 
 .register-btn {
-  width: 50%;
-  padding: 12px;
-  background-color: #4b0082; 
+  width: 100%;
+  padding: 10px;
+  background-color: #4b0082;
   color: white;
   border: none;
   border-radius: 50px;
-  font-size: 16px;
+  font-size: clamp(14px, 3vw, 16px);
   cursor: pointer;
   text-transform: uppercase;
   margin-top: 10px;
 }
 
-.register-btn:hover {
-  background-color: #4b0082; 
-}
-
 .toggle-link {
   text-align: center;
-  margin-top: 20px;
-  font-size: 14px;
-  color: grey; 
+  margin-top: 15px;
+  font-size: clamp(12px, 3vw, 14px);
+  color: grey;
 }
 
 .toggle-link a {
-  color: #4b0082; 
+  color: #4b0082;
   text-decoration: none;
   font-weight: bold;
 }
@@ -201,47 +212,49 @@ body {
 }
 
 /* Responsive Design */
-@media (max-width: 1024px) {
+@media (max-width: 768px) {
+  .main-container {
+    padding: 5px;
+    height: auto; /* Allow natural height */
+  }
+
   .box {
     flex-direction: column;
-    height: auto;
-  }
-  .left-section, .right-section {
-    padding: 40px;
-  }
-}
-
-@media (max-width: 768px) {
-  .box {
-    width: 90%;
     max-width: 600px;
+    margin: 0 auto;
+    height: auto; /* Remove fixed height */
   }
-  .left-section, .right-section {
-    padding: 30px;
+  
+  .left-section {
+    height: auto; /* Natural height */
+    min-height: 200px; /* Reduced minimum */
+    flex: none;
   }
+  
   .right-section {
-    text-align: center;
+    height: auto; /* Natural height */
+    flex: none;
+    padding: clamp(15px, 4vw, 20px);
   }
-  .register-btn {
-    width: 100%;
+
+  /* Make the body scrollable */
+  body {
+    overflow-y: auto; /* Enable scrolling for the whole page */
+    height: auto;
   }
 }
 
 @media (max-width: 480px) {
-  .main-container {
-    padding: 10px;
-  }
   .box {
     width: 100%;
-    height: auto;
+    margin: 0;
   }
-  .left-section, .right-section {
-    padding: 20px;
+  
+  .left-section {
+    min-height: 180px; /* Further reduced for smaller screens */
   }
-  .right-section h2 {
-    font-size: 18px;
-  }
-  .form-group-signup input {
-    font-size: 12px;
+  
+  .right-section {
+    padding: 15px; /* Fixed padding for consistency */
   }
 }
